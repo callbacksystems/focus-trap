@@ -1,0 +1,39 @@
+{
+  "name": "@ment-labs/focus-trap",
+  "version": "1.0.0",
+  "description": "A JavaScript utility for effective focus trapping within a specified element.",
+  "main": "dist/focus-trap.js",
+  "files": [
+    "dist/*.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ment-labs/focus-trap.git"
+  },
+  "keywords": [
+    "accessibility",
+    "A11Y",
+    "Focus Trap",
+    "Focus Trapping"
+  ],
+  "author": "Ment Labs",
+  "contributors": [
+    "Bruno Prieto <brunoprietog@hey.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ment-labs/focus-trap/issues"
+  },
+  "homepage": "https://github.com/ment-labs/focus-trap#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "clean": "rm -rf dist/*",
+    "build": "bin/build.js",
+    "release": "npm run build && npm publish"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.4"
+  }
+}
