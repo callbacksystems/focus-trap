@@ -32,7 +32,7 @@ export class FocusTrap {
   makeOutsideElementsInert() {
     let currentElement = this.element
     while (currentElement != document.body) {
-      Array.from(currentElement.parentElement?.children || []).filter(sibling => sibling !== currentElement && !sibling.hasAttribute("data-trap-focus-identifier")).forEach(element => {
+      Array.from(currentElement.parentElement?.children || []).filter(sibling => sibling !== currentElement && !sibling.inert && !sibling.hasAttribute("data-trap-focus-identifier")).forEach(element => {
         element.dataset.trapFocusIdentifier = this.trapFocusIdentifier
         element.inert = true
       })
