@@ -1,6 +1,6 @@
 {
   "name": "@ment-labs/focus-trap",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A JavaScript utility for effective focus trapping within a specified element.",
   "main": "dist/focus-trap.js",
   "files": [
