@@ -1,17 +1,17 @@
 import Controller from './controller'
 
-export class FocusTrap {
+export default class {
   #controller
 
   constructor(element) {
     this.#controller = new Controller(element)
   }
 
-  trapFocus() {
+  start() {
     this.#controller.trapFocus()
   }
 
-  releaseFocus() {
+  stop() {
     this.#controller.releaseFocus()
   }
 }

@@ -35,17 +35,19 @@ yarn add @ment-labs/focus-trap
 To use Focus Trap, simply import the package and initialize it with the element you want to trap focus within. Here's an example of how to use it:
 
 ```javascript
-import { FocusTrap } from "@ment-labs/focus-trap"
+import FocusTrap from "@ment-labs/focus-trap"
 
 const modalDialogElement = document.getElementById("your-modal-dialog-element")
 const focusTrap = new FocusTrap(modalDialogElement)
 
 // To trap focus:
-focusTrap.trapFocus()
+focusTrap.start()
 
 // To release focus trapping:
-focusTrap.releaseFocus()
+focusTrap.stop()
 ```
+
+Note that nested focus trapping is currently only supported on elements that belong to the element that currently has the focus trap.
 
 ## Contributing
 

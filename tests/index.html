@@ -6,7 +6,7 @@
   <title>Focus Trap</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script type="module">
-    import { FocusTrap } from "/dist/focus-trap.js"
+    import FocusTrap from "/dist/focus-trap.js"
 
     const openDialogButton = document.getElementById("open-dialog")
     const dialog = document.getElementById("dialog")
@@ -16,11 +16,11 @@
 
     openDialogButton.addEventListener("click", () => {
       dialog.hidden = false
-      focusTrap.trapFocus()
+      focusTrap.start()
     })
 
     closeDialogButton.addEventListener("click", () => {
-      focusTrap.releaseFocus()
+      focusTrap.stop()
       openDialogButton.focus()
       dialog.hidden = true
     })
