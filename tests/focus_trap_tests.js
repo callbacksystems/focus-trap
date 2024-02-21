@@ -52,3 +52,9 @@ test("releases focus if element is disconnected", async ({ page }) => {
   await page.evaluate(() => document.getElementById("dialog").remove())
   await expect(page.locator("a")).not.toHaveAttribute("inert")
 })
+
+test("releases focus if element is not visible", async ({ page }) => {
+  await page.locator("#open-dialog").click()
+  await page.evaluate(() => document.getElementById("dialog").hidden = true)
+  await expect(page.locator("a")).not.toHaveAttribute("inert")
+})

@@ -1,4 +1,4 @@
-import { elementIsFocusable } from "./helpers"
+import { elementIsFocusable, visible } from "./helpers"
 
 export default class {
   constructor(element) {
@@ -34,7 +34,7 @@ export default class {
   }
 
   makeOutsideElementsInert() {
-    if (!this.element.isConnected) return this.releaseFocus()
+    if (this.shouldReleaseFocus()) return this.releaseFocus()
 
     let currentElement = this.element
     while (currentElement !== document.body) {
@@ -75,6 +75,10 @@ export default class {
     if (this.tabbableElements.length === 0) return
 
     this.lastTabbableElement.focus()
+  }
+
+  shouldReleaseFocus() {
+    return !this.element.isConnected || !visible(this.element)
   }
 
   get isTrapped() {
