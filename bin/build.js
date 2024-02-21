@@ -9,6 +9,7 @@ const options = {
   entryPoints: ["src/index.js"],
   bundle: true,
   minify: true,
+  sourcemap: true,
   banner: { js: banner },
   format: 'esm',
   outfile: "dist/focus-trap.js",
