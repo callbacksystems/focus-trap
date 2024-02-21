@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Focus Trap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="module">
+    import { FocusTrap } from "/dist/focus-trap.js"
+
+    const openDialogButton = document.getElementById("open-dialog")
+    const dialog = document.getElementById("dialog")
+    const destroyMeButton = dialog.querySelector("#destroy-me")
+    const closeDialogButton = dialog.querySelector("#close-dialog")
+    const focusTrap = new FocusTrap(dialog)
+
+    openDialogButton.addEventListener("click", () => {
+      dialog.hidden = false
+      focusTrap.trapFocus()
+    })
+
+    closeDialogButton.addEventListener("click", () => {
+      focusTrap.releaseFocus()
+      openDialogButton.focus()
+      dialog.hidden = true
+    })
+
+    destroyMeButton.addEventListener("click", () => {
+      destroyMeButton.remove()
+    })
+  </script>
+</head>
+
+<body>
+  <a href="#">Link</a>
+  <button id="open-dialog" aria-haspopup="dialog">Dialog</button>
+  <div hidden id="dialog" role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="dialog-title"
+    aria-describedby="dialog-description">
+    <h2 id="dialog-title">Dialog Title</h2>
+    <p id="dialog-description">Dialog Description</p>
+    <button id="destroy-me">Destroy</button>
+    <button id="close-dialog">Close</button>
+  </div>
+</body>
+
+</html>

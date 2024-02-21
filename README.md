@@ -55,6 +55,22 @@ We welcome contributions in the form of bug reports, pull requests, or thoughtfu
 
 Please note that this project is released with a [Contributor Code of Conduct](docs/CONDUCT.md). By participating in this project you agree to abide by its terms.
 
+## Development
+
+Run `npm install` to install the project dependencies.
+
+There is a development server that is used to run functional tests and is also useful for debugging. You can start it by running `npm start`. Then, go to <http://localhost:3000/tests>.
+
+For this to work, the source must be built, since the HTML imports the bundled file. You can do this by running `npm run build`, or alternatively, `npm run watch` in a separate terminal, if you want it to build every time there is a change in the source and update automatically on the development server.
+
+Tests are run through Playwright, so you will need to install the browser drivers first:
+
+```bash
+npx playwright install --with-deps
+```
+
+Then you can run the tests with `npm test`.
+
 ---------
 
 © 2023 Ment Labs

@@ -2,6 +2,7 @@
   "name": "@ment-labs/focus-trap",
   "version": "1.1.0",
   "description": "A JavaScript utility for effective focus trapping within a specified element.",
+  "module": "dist/focus-trap.js",
   "main": "dist/focus-trap.js",
   "files": [
     "dist/*.js"
@@ -31,9 +32,14 @@
   "scripts": {
     "clean": "rm -rf dist/*",
     "build": "bin/build.js",
-    "release": "npm run build && npm publish"
+    "watch": "esbuild --watch --bundle --format=esm --outfile=dist/focus-trap.js src/index.js",
+    "release": "npm run build && npm publish",
+    "start": "node tests/server.mjs",
+    "test": "playwright test"
   },
   "devDependencies": {
-    "esbuild": "^0.19.4"
+    "@playwright/test": "^1.41.2",
+    "esbuild": "^0.20.1",
+    "express": "^4.18.2"
   }
 }
