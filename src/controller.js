@@ -1,11 +1,14 @@
-import { elementIsFocusable, visible } from "./helpers"
+import { FocusObserver, PageObserver } from "observers"
+import TabNavigation from "tab_navigation"
 
-export default class {
+export default class Controller {
+  id = crypto.randomUUID()
+  focusObserver = new FocusObserver(this)
+  pageObserver = new PageObserver(this)
+  tabNavigation = new TabNavigation(this)
+
   constructor(element) {
     this.element = element
-    this.id = crypto.randomUUID()
-    this.pageObserver = new MutationObserver(() => this.makeOutsideElementsInert())
-    this.elementObserver = new MutationObserver(() => this.restoreFocus())
   }
 
   trapFocus() {
@@ -13,28 +16,28 @@ export default class {
 
     this.element.dataset.focusTrapId = this.id
     this.element.dataset.focusTrapRoot = true
+    this.captureFocus()
     this.makeOutsideElementsInert()
-    this.element.addEventListener("keydown", this.restrictTabNavigation)
-    this.element.focus()
-    this.elementObserver.observe(this.element, { childList: true, subtree: true })
-    this.pageObserver.observe(document.body, { childList: true, subtree: true, attributes: true })
+    this.focusObserver.start()
+    this.pageObserver.start()
+    this.tabNavigation.startRestricting()
   }
 
   releaseFocus() {
     if (!this.isRoot) return
 
+    this.tabNavigation.stopRestricting()
+    this.pageObserver.stop()
+    this.focusObserver.stop()
+    this.element.removeAttribute("data-focus-trap-root")
     this.relatedElements.forEach(element => {
       element.removeAttribute("data-focus-trap-id")
       element.inert = false
     });
-    this.element.removeEventListener("keydown", this.restrictTabNavigation)
-    this.element.removeAttribute("data-focus-trap-root")
-    this.elementObserver.disconnect()
-    this.pageObserver.disconnect()
   }
 
   makeOutsideElementsInert() {
-    if (this.shouldReleaseFocus()) return this.releaseFocus()
+    if (!this.isRoot) return
 
     let currentElement = this.element
     while (currentElement !== document.body) {
@@ -46,39 +49,8 @@ export default class {
     }
   }
 
-  restrictTabNavigation = (event) => {
-    if (event.key === "Tab" && this.tabbableElements.length === 0) {
-      event.preventDefault()
-      event.stopPropagation()
-    } else if (event.key === "Tab" && event.shiftKey && document.activeElement === this.firstTabbableElement) {
-      event.preventDefault()
-      event.stopPropagation()
-      this.focusLastTabbableElement()
-    } else if (event.key === "Tab" && !event.shiftKey && document.activeElement === this.lastTabbableElement) {
-      event.preventDefault()
-      event.stopPropagation()
-      this.focusFirstTabbableElement()
-    }
-  }
-
-  restoreFocus() {
-    if (!this.element.contains(document.activeElement)) this.element.focus()
-  }
-
-  focusFirstTabbableElement() {
-    if (this.tabbableElements.length === 0) return
-
-    this.firstTabbableElement.focus()
-  }
-
-  focusLastTabbableElement() {
-    if (this.tabbableElements.length === 0) return
-
-    this.lastTabbableElement.focus()
-  }
-
-  shouldReleaseFocus() {
-    return !this.element.isConnected || !visible(this.element)
+  captureFocus() {
+    if (this.isRoot && !this.element.contains(document.activeElement)) this.element.focus()
   }
 
   get isTrapped() {
@@ -91,17 +63,5 @@ export default class {
 
   get relatedElements() {
     return document.querySelectorAll(`[data-focus-trap-id="${this.id}"]`)
-  }
-
-  get tabbableElements() {
-    return Array.from(this.element.querySelectorAll("*")).filter(elementIsFocusable)
-  }
-
-  get firstTabbableElement() {
-    return this.tabbableElements[0]
-  }
-
-  get lastTabbableElement() {
-    return this.tabbableElements[this.tabbableElements.length - 1]
   }
 }

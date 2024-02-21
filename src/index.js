@@ -1,6 +1,6 @@
-import Controller from './controller'
+import Controller from "controller"
 
-export default class {
+export default class FocusTrap {
   #controller
 
   constructor(element) {

@@ -11,7 +11,7 @@ const options = {
   minify: true,
   sourcemap: true,
   banner: { js: banner },
-  format: 'esm',
+  format: "esm",
   outfile: "dist/focus-trap.js",
 }
 
