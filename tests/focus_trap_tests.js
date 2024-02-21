@@ -40,3 +40,9 @@ test("makes dinamically added outside elements inert", async ({ page }) => {
   })
   await expect(page.locator("#new-div")).toHaveAttribute("inert")
 })
+
+test("releases focus if element is disconnected", async ({ page }) => {
+  await page.locator("#open-dialog").click()
+  await page.evaluate(() => document.getElementById("dialog").remove())
+  await expect(page.locator("a")).not.toHaveAttribute("inert")
+})

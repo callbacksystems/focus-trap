@@ -10,6 +10,7 @@ export default class {
 
   trapFocus() {
     if (this.isTrapped) return
+
     this.element.dataset.focusTrapId = this.id
     this.element.dataset.focusTrapRoot = true
     this.makeOutsideElementsInert()
@@ -21,6 +22,7 @@ export default class {
 
   releaseFocus() {
     if (!this.isRoot) return
+
     this.relatedElements.forEach(element => {
       element.removeAttribute("data-focus-trap-id")
       element.inert = false
@@ -32,6 +34,8 @@ export default class {
   }
 
   makeOutsideElementsInert() {
+    if (!this.element.isConnected) return this.releaseFocus()
+
     let currentElement = this.element
     while (currentElement !== document.body) {
       Array.from(currentElement.parentElement?.children || []).filter(sibling => sibling !== currentElement && !sibling.inert && !sibling.hasAttribute("data-focus-trap-id")).forEach(element => {
@@ -63,11 +67,13 @@ export default class {
 
   focusFirstTabbableElement() {
     if (this.tabbableElements.length === 0) return
+
     this.firstTabbableElement.focus()
   }
 
   focusLastTabbableElement() {
     if (this.tabbableElements.length === 0) return
+
     this.lastTabbableElement.focus()
   }
 
