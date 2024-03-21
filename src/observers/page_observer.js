@@ -1,7 +1,7 @@
 import { visible } from "helpers"
 
 export default class PageObserver {
-  mutationObserver = new MutationObserver(() => this.pageChanged())
+  mutationObserver = new MutationObserver((mutations) => this.pageChanged(mutations))
 
   constructor(controller) {
     this.controller = controller
@@ -21,15 +21,19 @@ export default class PageObserver {
     this.started = false
   }
 
-  pageChanged() {
+  pageChanged(mutations) {
     if (this.shouldReleaseFocus()) return this.controller.releaseFocus()
 
     this.controller.captureFocus()
-    this.controller.makeOutsideElementsInert()
+    if (this.areChangesOutsideElement(mutations)) this.controller.makeOutsideElementsInert()
   }
 
   shouldReleaseFocus() {
     return !this.element.isConnected || !visible(this.element)
+  }
+
+  areChangesOutsideElement(mutations) {
+    return mutations.some(({ target }) => !this.element.contains(target))
   }
 
   get element() {
