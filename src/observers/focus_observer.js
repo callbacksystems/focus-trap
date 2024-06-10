@@ -1,8 +1,6 @@
-export default class FocusObserver {
-  constructor(controller) {
-    this.controller = controller
-  }
+import BaseObserver from "observers/base_observer"
 
+export default class FocusObserver extends BaseObserver {
   start() {
     if (this.started) return
 

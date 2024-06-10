@@ -1,11 +1,8 @@
+import BaseObserver from "observers/base_observer"
 import { visible } from "helpers"
 
-export default class PageObserver {
+export default class PageObserver extends BaseObserver {
   mutationObserver = new MutationObserver((mutations) => this.pageChanged(mutations))
-
-  constructor(controller) {
-    this.controller = controller
-  }
 
   start() {
     if (this.started) return
@@ -34,9 +31,5 @@ export default class PageObserver {
 
   areChangesOutsideElement(mutations) {
     return mutations.some(({ target }) => !this.element.contains(target))
-  }
-
-  get element() {
-    return this.controller.element
   }
 }
