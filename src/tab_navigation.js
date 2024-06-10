@@ -1,6 +1,8 @@
 import { elementIsTabbable } from "helpers"
 
 export default class TabNavigation {
+  started = false
+
   constructor(controller) {
     this.controller = controller
   }
