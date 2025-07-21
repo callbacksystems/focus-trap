@@ -25,9 +25,9 @@ Focus trapping helps in several ways:
 You can install the Focus Trap package via npm or yarn:
 
 ```bash
-npm install @ment-labs/focus-trap
+npm install @callbacksystems/focus-trap
 # or
-yarn add @ment-labs/focus-trap
+yarn add @callbacksystems/focus-trap
 ```
 
 ## Usage
@@ -35,7 +35,7 @@ yarn add @ment-labs/focus-trap
 To use Focus Trap, simply import the package and initialize it with the element you want to trap focus within. Here's an example of how to use it:
 
 ```javascript
-import FocusTrap from "@ment-labs/focus-trap"
+import FocusTrap from "@callbacksystems/focus-trap"
 
 const modalDialogElement = document.getElementById("your-modal-dialog-element")
 const focusTrap = new FocusTrap(modalDialogElement)
@@ -51,9 +51,9 @@ Note that nested focus trapping is currently only supported on elements that bel
 
 ## Contributing
 
-Focus Trap is open-source software, freely distributable under the terms of an [MIT-style license](LICENSE). The [source code is hosted on GitHub](https://github.com/ment-labs/focus-trap).
+Focus Trap is open-source software, freely distributable under the terms of an [MIT-style license](LICENSE). The [source code is hosted on GitHub](https://github.com/callbacksystems/focus-trap).
 
-We welcome contributions in the form of bug reports, pull requests, or thoughtful discussions in the [GitHub issue tracker](https://github.com/ment-labs/focus-trap/issues).
+We welcome contributions in the form of bug reports, pull requests, or thoughtful discussions in the [GitHub issue tracker](https://github.com/callbacksystems/focus-trap/issues).
 
 Please note that this project is released with a [Contributor Code of Conduct](docs/CONDUCT.md). By participating in this project you agree to abide by its terms.
 
@@ -75,4 +75,4 @@ Then you can run the tests with `npm test`.
 
 ---------
 
-© 2023 Ment Labs
+© Callback Systems

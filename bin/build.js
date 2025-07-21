@@ -2,8 +2,7 @@
 
 const esbuild = require("esbuild")
 const package = require("../package.json")
-const year = new Date().getFullYear()
-const banner = `/*\n\@ment-labs/focus-trap ${package.version}\nCopyright © ${year} Ment Labs\n*/`
+const banner = `/*\n\@callbacksystems/focus-trap ${package.version}\nCopyright © Callback Systems\n*/`
 
 const options = {
   entryPoints: ["src/index.js"],

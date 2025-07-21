@@ -1,15 +1,15 @@
 {
-  "name": "@ment-labs/focus-trap",
-  "version": "2.0.0",
+  "name": "@callbacksystems/focus-trap",
+  "version": "0.1.0",
   "description": "A JavaScript utility for effective focus trapping within a specified element.",
   "module": "dist/focus-trap.js",
   "main": "dist/focus-trap.js",
   "files": [
-    "dist/*.js"
+    "dist/*"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ment-labs/focus-trap.git"
+    "url": "git+https://github.com/callbacksystems/focus-trap.git"
   },
   "keywords": [
     "accessibility",
@@ -17,15 +17,15 @@
     "Focus Trap",
     "Focus Trapping"
   ],
-  "author": "Ment Labs",
+  "author": "Callback Systems",
   "contributors": [
     "Bruno Prieto <brunoprietog@hey.com>"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ment-labs/focus-trap/issues"
+    "url": "https://github.com/callbacksystems/focus-trap/issues"
   },
-  "homepage": "https://github.com/ment-labs/focus-trap#readme",
+  "homepage": "https://github.com/callbacksystems/focus-trap#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -38,8 +38,8 @@
     "test": "playwright test"
   },
   "devDependencies": {
-    "@playwright/test": "^1.44.1",
-    "esbuild": "^0.21.5",
-    "express": "^4.19.2"
+    "@playwright/test": "^1.54.1",
+    "esbuild": "^0.25.8",
+    "express": "^5.1.0"
   }
 }
