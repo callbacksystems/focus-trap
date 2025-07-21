@@ -1,5 +1,4 @@
 import BaseObserver from "observers/base_observer"
-import { visible } from "helpers"
 
 export default class PageObserver extends BaseObserver {
   #mutationObserver = new MutationObserver((mutations) => this.#pageChanged(mutations))
@@ -30,6 +29,6 @@ export default class PageObserver extends BaseObserver {
   }
 
   get #shouldReleaseFocus() {
-    return !this.element.isConnected || !visible(this.element)
+    return !this.element.isConnected || !this.element.checkVisibility()
   }
 }

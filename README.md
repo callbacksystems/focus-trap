@@ -20,6 +20,8 @@ Focus trapping helps in several ways:
 
 - **Nested Focus Trapping:** Focus Trap supports nested focus trapping, allowing you to create complex UI components with nested focus traps. This makes it versatile and suitable for various use cases, including nested modal dialogs, where you want to ensure that focus remains within the currently active dialog while preventing interaction with elements outside of it.
 
+**Note:** This package also uses `element.checkVisibility()` to determine if an element is visible, which is more accurate than other methods. This ensures that focus trapping only occurs on elements that are actually visible to the user. You may need to use a polyfill for `element.checkVisibility()` in older browsers.
+
 ## Installation
 
 You can install the Focus Trap package via npm or yarn:
