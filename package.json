@@ -1,6 +1,6 @@
 {
   "name": "@callbacksystems/focus-trap",
-  "version": "0.1.0",
+  "version": "3.0.0",
   "description": "A JavaScript utility for effective focus trapping within a specified element.",
   "module": "dist/focus-trap.js",
   "main": "dist/focus-trap.js",
