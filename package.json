@@ -35,7 +35,7 @@
     "watch": "esbuild --watch --bundle --format=esm --outfile=dist/focus-trap.js src/index.js",
     "release": "npm run build && npm publish",
     "start": "node tests/server.mjs",
-    "test": "playwright test"
+    "test": "npm run build && playwright test"
   },
   "devDependencies": {
     "@playwright/test": "^1.54.1",
